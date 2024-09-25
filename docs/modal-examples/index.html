@@ -1,0 +1,161 @@
+<!doctype html><html lang="en" data-bs-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Paul Hudson"><meta name="generator" content="Ignite v0.1.0"><title>Modals – My Awesome Site</title><link href="/css/bootstrap.min.css" rel="stylesheet"><link href="/css/prism-default-dark.css" rel="stylesheet"><link href="/css/bootstrap-icons.min.css" rel="stylesheet"><link href="https://tempAccount124.github.io/modal-examples" rel="canonical"><meta property="og:site_name" content="My Awesome Site"><meta property="og:title" content="Modals"><meta property="twitter:title" content="Modals"><meta property="og:url" content="https://tempAccount124.github.io/modal-examples"><meta name="twitter:domain" content="tempAccount124.github.io"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:dnt" content="on"></head><body class="container" style="padding-top: 80px; padding-bottom: 80px"><div class="col-sm-10 mx-auto"><header><nav class="fixed-top navbar navbar-expand-md" style="background-color: rgb(178 34 34 / 100%)" data-bs-theme="dark"><div class="container-fluid col"><a href="/" class="navbar-brand"><img src="/images/logo.svg"  class="mx-auto" style="width: min(60vw, 300px); height: 100%"alt="ExampleSite logo"/></a><button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div id="navbarCollapse" class="collapse navbar-collapse"><ul class="navbar-nav mb-2 mb-md-0 col justify-content-end"><li class="nav-item dropdown" data-bs-theme="light"><a href="#" role="button" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">Key concepts</a><ul class="dropdown-menu"><li><a href="/grid-examples" class="dropdown-item">Grid Layout</a></li><li><a href="/navigation-examples" class="dropdown-item">Navigation</a></li><li><a href="/content-examples" class="dropdown-item">Content</a></li><li><a href="/text-examples" class="dropdown-item">Text</a></li><li><a href="/custom/path/to/styling" class="dropdown-item">Styling</a></li></ul></li><li class="nav-item dropdown" data-bs-theme="light"><a href="#" role="button" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" aria-expanded="false">Examples</a><ul class="dropdown-menu"><li><a href="/accordion-examples" class="dropdown-item">Accordions</a></li><li><a href="/alert-examples" class="dropdown-item">Alerts</a></li><li><a href="/badge-examples" class="dropdown-item">Badges</a></li><li><a href="/button-examples" class="dropdown-item">Buttons</a></li><li><a href="/card-examples" class="dropdown-item">Cards</a></li><li><a href="/carousel-examples" class="dropdown-item">Carousels</a></li><li><a href="/code-examples" class="dropdown-item">Code</a></li><li><a href="/dropdown-examples" class="dropdown-item">Dropdowns</a></li><li><a href="/embed-examples" class="dropdown-item">Embeds</a></li><li><a href="/image-examples" class="dropdown-item">Images</a></li><li><a href="/include-examples" class="dropdown-item">Includes</a></li><li><a href="/link-examples" class="dropdown-item">Links</a></li><li><a href="/list-examples" class="dropdown-item">Lists</a></li><li><a href="/modal-examples" class="dropdown-item active" aria-current="page">Modals</a></li><li><a href="/quote-examples" class="dropdown-item">Quotes</a></li><li><a href="/table-examples" class="dropdown-item">Tables</a></li></ul></li><li class="nav-item"><a href="https://github.com/twostraws/Ignite" class="nav-link">Ignite on GitHub</a></li></ul></div></div></nav></header><h1>Modals</h1><p class="lead">Modals allow you to present content in a modal dialog on top of the current page. By default they are presented with a backdrop, vertically centered in a medium size on the screen.</p><h3>Showing Modals</h3><p>A modal is displayed using the <code>ShowModal(id:)</code> action.</p><p class="mt-4">Here is simple modal:</p><pre><code class="language-swift">Button("Show simple Modal") {
+    ShowModal(id: "showModalId")
+}
+.role(.primary)
+
+Modal(id: "showModalId") {
+    Text("Dismiss me by clicking on the backdrop.")
+        .font(.title3)
+        .margin(.extraLarge)
+        .horizontalAlignment(.center)
+}</code></pre><div class="pt-4"><div class="card text-bg-light"><div class="card-body"><div class="my-3"><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('showModalId'), options);
+modal.show();">Show simple Modal</button></div></div></div><div id="showModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-body"><h3 class="m-5 text-center">Dismiss me by clicking on the backdrop.</h3></div></div></div></div></div><h2 class="mt-5">Dismissing Modals</h2><p>Modals can either be dismissed by clicking on the backdrop, unless otherwise configured in the <a href="#Options">Presentation Options</a>, by pressing the <code>Esc</code> key or programmatically by using the <code>DismissModal(id:)</code> action.</p><p class="mt-3">This modal can be dismissed through a cose button in the top right corner:</p><pre><code class="language-swift">Modal(id: "dismissModalId") {
+    Group {
+        Button().role(.close).onClick {
+            DismissModal(id: "dismissModalId")
+        }
+    }
+    .horizontalAlignment(.trailing)
+
+    Text("Dismiss me by clicking on the close button.")
+        .font(.title3)
+        .margin(.extraLarge)
+        .horizontalAlignment(.center)
+}</code></pre><div class="pt-4"><div class="card text-bg-light"><div class="card-body"><div class="my-3"><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('dismissModalId'), options);
+modal.show();">Show Modal with a Close Button</button></div></div></div><div id="dismissModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-body"><div class="text-end"><button type="button" class="btn btn-close" aria-label="Close" onclick="const modal = document.getElementById('dismissModalId');
+const modalInstance = bootstrap.Modal.getInstance(modal);
+if (modalInstance) { modalInstance.hide(); }"></button></div><h3 class="m-5 text-center">Dismiss me by clicking on the close button.</h3></div></div></div></div></div><h2 class="mt-5">Modal Size</h2><p>The height of a modal is determined by the height of the content. However, the width can be adjusted by using the <code>size()</code> modifier. By default a modal takes a medium width but it can be adjusted to <code>.small</code>, <code>.large</code>, <code>.xLarge</code> and <code>.fullscreen</code></p><p class="mt-3">Here are a few examples:</p><pre><code class="language-swift">Modal(id: "smallModalId") {
+    Text(markdown: "Modal with size `.small`")
+        .font(.title3)
+        .margin(.extraLarge)
+        .horizontalAlignment(.center)
+}
+.size(.small)
+
+Modal(id: "xLargeModalId") {
+    Text(markdown: "Modal with size `.xLarge`")
+        .font(.title3)
+        .margin(.extraLarge)
+        .horizontalAlignment(.center)
+}
+.size(.xlarge)
+
+Modal(id: "fullscreenModalId") {
+    Group {
+        Button().role(.close).onClick {
+            DismissModal(id: "fullscreenModalId")
+        }
+    }
+    .horizontalAlignment(.trailing)
+
+    Text(markdown: "Modal with size `.fullscreen`.")
+        .font(.title3)
+        .margin(.extraLarge)
+        .horizontalAlignment(.center)
+}
+.size(.fullscreen)</code></pre><div class="pt-4"><div class="card text-bg-light"><div class="card-body"><div class="my-3"><div class="text-center row"><div class="col"><div><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('smallModalId'), options);
+modal.show();">Show Small Modal</button></div></div><div class="col"><div><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('xLargeModalId'), options);
+modal.show();">Show xLarge Modal</button></div></div><div class="col"><div><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('fullscreenModalId'), options);
+modal.show();">Show Fullscreen Modal</button></div></div></div></div></div></div><div id="smallModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-sm modal-dialog-centered"><div class="modal-content"><div class="modal-body"><h3 class="m-5 text-center">Modal with size <code>.small</code></h3></div></div></div></div><div id="xLargeModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content"><div class="modal-body"><h3 class="m-5 text-center">Modal with size <code>.xLarge</code></h3></div></div></div></div><div id="fullscreenModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-fullscreen modal-dialog-centered"><div class="modal-content"><div class="modal-body"><div class="text-end"><button type="button" class="btn btn-close" aria-label="Close" onclick="const modal = document.getElementById('fullscreenModalId');
+const modalInstance = bootstrap.Modal.getInstance(modal);
+if (modalInstance) { modalInstance.hide(); }"></button></div><h3 class="m-5 text-center">Modal with size <code>.fullscreen</code>.</h3></div></div></div></div></div><h2 class="mt-5">Modal Position</h2><p>Modals are always horizontally centered but the vertical position can be changed from <code>Position.center</code> to <code>Position.top</code> by using the <code>.modalPosition()</code> modifier.</p><p class="mt-3">Here is a modal with <code>Position.top</code>:</p><pre><code class="language-swift">Modal(id: "topModalId") {
+    Text(markdown: "Modal with `Position.top`")
+        .font(.title3)
+        .margin(.extraLarge)
+        .horizontalAlignment(.center)
+}
+.position(.top)</code></pre><div class="pt-4"><div class="card text-bg-light"><div class="card-body"><div class="my-3"><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('topModalId'), options);
+modal.show();">Show Modal at the top</button></div></div></div><div id="topModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><h3 class="m-5 text-center">Modal with <code>Position.top</code></h3></div></div></div></div></div><h2 class="mt-5">Headers and Footers</h2><p>Optionally modals can have a header and/or a footer.</p><p class="mt-3">Here is how they look like:</p><pre><code class="language-swift">Modal(id: "headerModalId") {
+    Text("Body")
+} header: {
+    Text("Header").font(.title5)
+
+    Button().role(.close).onClick{
+        DismissModal(id: "headerModalId")
+    }
+}
+
+Modal(id: "footerModalId") {
+    Text("Body")
+} footer: {
+    Button("Close") {
+        DismissModal(id: "footerModalId")
+    }
+    .role(.secondary)
+
+    Button("Go") {
+        // Do something
+    }
+    .role(.primary)
+}
+
+Modal(id: "headerAndFooterModalId") {
+    Text("Body")
+} header: {
+    Text("Header").font(.title5)
+
+    Button().role(.close).onClick{
+        DismissModal(id: "headerAndFooterModalId")
+    }
+} footer: {
+    Button("Close") {
+        DismissModal(id: "headerAndFooterModalId")
+    }
+    .role(.secondary)
+
+    Button("Go") {
+        // Do something
+    }
+    .role(.primary)
+}</code></pre><div class="pt-4"><div class="card text-bg-light"><div class="card-body"><div class="my-3"><div class="text-center row"><div class="col"><div><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('headerModalId'), options);
+modal.show();">Show Modal with Header</button></div></div><div class="col"><div><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('footerModalId'), options);
+modal.show();">Show Modal with Footer</button></div></div><div class="col"><div><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('headerAndFooterModalId'), options);
+modal.show();">Show Modal with Header and Footer</button></div></div></div></div></div></div><div class="mt-4 alert mt-4 alert-info"><p>Note how the content in the header is inlined and placed on the leading edge. However, a button with the role <code>close</code> is moved to the trailing edge. Content in the footer on the other hand is placed on the trailing edge.</p></div><div id="headerModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5>Header</h5><button type="button" class="btn btn-close" aria-label="Close" onclick="const modal = document.getElementById('headerModalId');
+const modalInstance = bootstrap.Modal.getInstance(modal);
+if (modalInstance) { modalInstance.hide(); }"></button></div><div class="modal-body"><p>Body</p></div></div></div></div><div id="footerModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-body"><p>Body</p></div><div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="const modal = document.getElementById('footerModalId');
+const modalInstance = bootstrap.Modal.getInstance(modal);
+if (modalInstance) { modalInstance.hide(); }">Close</button><button type="button" class="btn btn-primary">Go</button></div></div></div></div><div id="headerAndFooterModalId" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h5>Header</h5><button type="button" class="btn btn-close" aria-label="Close" onclick="const modal = document.getElementById('headerAndFooterModalId');
+const modalInstance = bootstrap.Modal.getInstance(modal);
+if (modalInstance) { modalInstance.hide(); }"></button></div><div class="modal-body"><p>Body</p></div><div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="const modal = document.getElementById('headerAndFooterModalId');
+const modalInstance = bootstrap.Modal.getInstance(modal);
+if (modalInstance) { modalInstance.hide(); }">Close</button><button type="button" class="btn btn-primary">Go</button></div></div></div></div></div><h2 class="mt-5">Scrollable Content</h2><p>For content that is too long to fit on the screen, the body content can be made scrollable by using the <code>scrollableContent()</code> modifier.</p><p class="mt-3">Here is a Modal with a long text:</p><pre><code class="language-swift">Modal(id: "modal7" {
+    Text(placeholderLength: 1000)
+} header: {
+    Text("Long text")
+        .font(.title5)
+}
+.size(.large)
+.scrollableContent(true)</code></pre><div><div class="card text-bg-light"><div class="card-body"><div class="my-3"><button type="button" class="btn btn-primary" onclick="const options = {
+    
+};
+const modal = new bootstrap.Modal(document.getElementById('modal7'), options);
+modal.show();">Show Modal with Scrollable Content</button></div></div></div><div id="modal7" class="modal fade" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5>Long text</h5></div><div class="modal-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consequat aliquip non veniam. Pariatur. Cupidatat deserunt est. Dolor quis aliquip, qui qui enim ex magna duis pariatur minim in irure reprehenderit ad exercitation, do nulla, in nostrud mollit esse voluptate ea reprehenderit. Nostrud occaecat minim in do ad. Labore aliquip. Minim fugiat do cillum ut. Tempor nisi voluptate nisi, excepteur. Officia nulla. Non, excepteur eu magna tempor cillum ut eiusmod ullamco, sint voluptate incididunt deserunt cillum aliquip fugiat. Aliquip mollit labore. Do labore cupidatat. Ullamco eiusmod mollit esse labore irure sint id, reprehenderit ex. Proident tempor deserunt excepteur cillum est in sed est magna velit velit, aliquip ex occaecat nostrud aliquip culpa ullamco quis aute mollit in. Irure cupidatat aliqua, fugiat sed magna, in aliqua, duis excepteur reprehenderit. Do, ea reprehenderit sint, dolore magna id. Do sed est veniam laboris cillum nostrud. Exercitation. Proident mollit veniam laboris, enim do esse. Occaecat fugiat minim do. Culpa, deserunt est. Veniam. Laborum nostrud consequat dolor aliqua laborum dolore. Sint eiusmod. Nostrud voluptate, reprehenderit dolore, in nostrud. Et eiusmod exercitation nulla, aliqua nisi, eiusmod proident excepteur sed, aliqua. Aliquip, magna dolor labore. Irure culpa incididunt est enim culpa minim ex velit sed, magna quis nulla exercitation proident dolor. Laborum officia pariatur voluptate mollit occaecat nisi veniam enim consequat, et dolor minim, culpa ullamco laborum nostrud nulla, officia proident officia consequat sint do minim, sint nulla ea excepteur. Velit ea sed. Dolore reprehenderit ad qui ea aute occaecat ea anim reprehenderit et. Dolore esse consequat deserunt ad ea minim reprehenderit esse ut non officia fugiat ullamco in reprehenderit fugiat do ad sed tempor nulla. Sunt. Laboris, laborum aliquip enim eu pariatur excepteur laboris fugiat est esse qui id voluptate ullamco laboris incididunt tempor, irure ea est quis eiusmod qui sunt velit sed duis in, exercitation eiusmod ullamco nostrud excepteur proident id cupidatat. Consequat exercitation aute anim, ut anim consequat fugiat nisi nisi esse est. Minim qui excepteur eiusmod, voluptate pariatur nisi sunt. Dolor est, minim sint, id mollit, laborum commodo do reprehenderit deserunt ullamco laborum, laborum. Proident pariatur, magna et fugiat est irure qui. Velit, enim esse eiusmod ea magna enim in minim nisi ullamco esse. Enim incididunt laboris nostrud veniam commodo nisi, esse fugiat. Id velit. Deserunt, ea do veniam incididunt. Sunt. Ut sint, sunt sed nostrud veniam ut qui ea incididunt magna consequat culpa et ex, nisi, aliquip nostrud officia excepteur, dolor labore aliqua reprehenderit nisi irure, sunt ea. Culpa ex eiusmod cupidatat nostrud, pariatur dolor laboris fugiat sunt do duis laboris fugiat dolor, sed ullamco, velit deserunt, magna. Labore pariatur commodo cillum incididunt id sed aliquip sint nostrud eiusmod. Velit non veniam aliqua, tempor aute proident aliqua nisi occaecat ullamco incididunt ullamco. Enim. Incididunt culpa nostrud exercitation ea. Dolor anim aliquip, exercitation. Cillum minim ad incididunt in pariatur, aliqua sint tempor, in anim deserunt, laborum fugiat laboris. Pariatur non. Commodo proident magna est duis eiusmod cupidatat cillum veniam officia cillum laborum labore mollit et cillum duis. Proident aliqua cillum deserunt commodo nisi commodo commodo. Fugiat occaecat mollit eu voluptate labore, laborum labore dolore commodo mollit labore irure in, sint proident sunt aliquip exercitation nulla, ullamco culpa nulla duis. Reprehenderit esse velit culpa officia nisi duis proident enim tempor. Exercitation. Excepteur labore reprehenderit, occaecat voluptate anim eiusmod id. Nostrud duis irure reprehenderit enim exercitation mollit dolor mollit est incididunt excepteur. Proident dolore, incididunt fugiat. Veniam, eiusmod, ex, excepteur, commodo officia. Voluptate cupidatat minim nulla magna in laborum velit. Sed ut ex commodo dolore dolor mollit est, commodo. Anim commodo sint laborum veniam id laboris minim excepteur, enim, pariatur incididunt sint nostrud dolore. Pariatur nostrud non voluptate et, ex ad enim ullamco laboris eu nulla aliqua id culpa consequat officia enim occaecat ex, in magna sed velit sint incididunt exercitation dolore excepteur sunt ad, eu. Sunt ad magna commodo dolor nostrud sunt do do ea ea minim dolor. Sunt et do fugiat incididunt duis. Cillum proident eiusmod commodo sed duis minim, pariatur magna commodo ut, aliquip sint deserunt nisi deserunt. Quis in nulla quis. Exercitation tempor magna ex veniam reprehenderit nulla. Minim, ullamco aliqua non ex irure qui reprehenderit commodo. Anim, magna, velit culpa veniam aliqua non, ullamco officia, qui dolor aute enim eu dolor magna. Tempor mollit sint et quis incididunt. Eu enim occaecat duis. Ea eu quis officia fugiat, id voluptate dolor nisi dolor non velit proident, mollit est excepteur. Voluptate. Minim deserunt reprehenderit culpa. Sint minim do irure magna exercitation. Occaecat enim. Irure velit. Laborum labore. Deserunt, ullamco duis tempor voluptate minim do id incididunt cillum eu nulla sint dolor duis cupidatat aliquip labore cupidatat cillum mollit pariatur ad occaecat minim duis aliquip duis anim. Fugiat exercitation, laborum in incididunt excepteur id proident. Eu sunt officia, dolor qui esse dolore dolor ex irure, reprehenderit anim, exercitation mollit ad commodo aliquip non ullamco magna, non exercitation tempor irure. Veniam reprehenderit, labore dolore eiusmod est cillum esse pariatur commodo eu nostrud veniam deserunt eu. Sed, velit ullamco duis non proident veniam nostrud ea. Laboris nostrud officia minim magna non ad occaecat ad fugiat officia velit. Tempor. Consequat. Ea incididunt dolore eiusmod velit est eu. Cillum enim, ea in nulla minim officia duis, excepteur sunt officia consequat. Minim. Deserunt, labore. Anim proident reprehenderit ea consequat labore tempor veniam sed est esse esse, quis, esse anim nulla irure culpa duis consequat ex esse nostrud quis cillum, nulla. Dolor enim. Pariatur duis ad occaecat nisi eiusmod laboris sint aliqua incididunt cillum do nulla ullamco. Incididunt irure ut minim laboris. In culpa. Ea, commodo occaecat. Aliquip sint ea velit. Non excepteur proident ex. Voluptate sint et id cupidatat. Veniam, qui, aliquip dolor, tempor. Aliqua culpa proident cillum, non duis aute qui voluptate nisi, consequat fugiat sed labore, incididunt duis ex aliqua dolor nisi sunt reprehenderit et cillum qui, dolore, deserunt culpa proident minim ex enim exercitation qui in dolore. Officia culpa incididunt. Id, ut. Ut proident commodo. Velit. Fugiat et cupidatat magna dolore eu id duis reprehenderit et aute exercitation. Est eiusmod irure sunt tempor. Ad minim cillum.</p></div></div></div></div></div><h2 id="Options" class="mt-5">Presentation Options</h2><p>The <code>ShowModal</code> action accepts an array of options that allow you to configure various presentation settings:</p><table class="table"><tbody><tr><td><h5>Option</h5></td><td><h5>Description</h5></td></tr><tr><td><p><code>noBackdrop</code></p></td><td><p>Disables the backdrop, making the modal non-dismissible by clicking outside it.</p></td></tr><tr><td><p><code>backdrop(dismissible: Bool)</code></p></td><td><p>Enables the backdrop by default. If `dismissible` is set to `false`, the modal cannot be dismissed by clicking outside.</p></td></tr><tr><td><p><code>keyboard(Bool)</code></p></td><td><p>Allows the modal to be dismissed by pressing the ESC key when set to `true`. If `false`, this behavior is disabled. The default is `true`.</p></td></tr><tr><td><p><code>focus(Bool)</code></p></td><td><p>When `true`, the modal will autofocus on the modal when opened. The default is `true`.</p></td></tr></tbody></table><p class="mt-5">A modal which can not be dismissed by clicking on the backdrop can be configured like this:</p><pre><code class="language-swift">Button("Show Modal") {
+    ShowModal(id: "showModalId", option [.backdrop(dismissable: false)])
+}</code></pre><div><h2 class="text-center mt-5"><a href="https://github.com/twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-github"></i></a><a href="https://twitter.com/twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-twitter"></i></a><a href="https://youtube.com/@twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-youtube"></i></a><a href="https://mastodon.social/@twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-mastodon"></i></a></h2><p class="text-center mt-5">Created with <a href="https://github.com/twostraws/Ignite">Ignite</a></p></div></div><script src="/js/bootstrap.bundle.min.js"></script><script src="/js/syntax-highlighting.js"></script></body></html>

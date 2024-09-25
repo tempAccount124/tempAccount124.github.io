@@ -1,0 +1,53 @@
+<!doctype html><html lang="en" data-bs-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Paul Hudson"><meta name="generator" content="Ignite v0.1.0"><title>Grid Layout – My Awesome Site</title><link href="/css/bootstrap.min.css" rel="stylesheet"><link href="/css/prism-default-dark.css" rel="stylesheet"><link href="/css/bootstrap-icons.min.css" rel="stylesheet"><link href="https://tempAccount124.github.io/grid-examples" rel="canonical"><meta property="og:site_name" content="My Awesome Site"><meta property="og:title" content="Grid Layout"><meta property="twitter:title" content="Grid Layout"><meta property="og:url" content="https://tempAccount124.github.io/grid-examples"><meta name="twitter:domain" content="tempAccount124.github.io"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:dnt" content="on"></head><body class="container" style="padding-top: 80px; padding-bottom: 80px"><div class="col-sm-10 mx-auto"><header><nav class="fixed-top navbar navbar-expand-md" style="background-color: rgb(178 34 34 / 100%)" data-bs-theme="dark"><div class="container-fluid col"><a href="/" class="navbar-brand"><img src="/images/logo.svg"  class="mx-auto" style="width: min(60vw, 300px); height: 100%"alt="ExampleSite logo"/></a><button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div id="navbarCollapse" class="collapse navbar-collapse"><ul class="navbar-nav mb-2 mb-md-0 col justify-content-end"><li class="nav-item dropdown" data-bs-theme="light"><a href="#" role="button" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" aria-expanded="false">Key concepts</a><ul class="dropdown-menu"><li><a href="/grid-examples" class="dropdown-item active" aria-current="page">Grid Layout</a></li><li><a href="/navigation-examples" class="dropdown-item">Navigation</a></li><li><a href="/content-examples" class="dropdown-item">Content</a></li><li><a href="/text-examples" class="dropdown-item">Text</a></li><li><a href="/custom/path/to/styling" class="dropdown-item">Styling</a></li></ul></li><li class="nav-item dropdown" data-bs-theme="light"><a href="#" role="button" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">Examples</a><ul class="dropdown-menu"><li><a href="/accordion-examples" class="dropdown-item">Accordions</a></li><li><a href="/alert-examples" class="dropdown-item">Alerts</a></li><li><a href="/badge-examples" class="dropdown-item">Badges</a></li><li><a href="/button-examples" class="dropdown-item">Buttons</a></li><li><a href="/card-examples" class="dropdown-item">Cards</a></li><li><a href="/carousel-examples" class="dropdown-item">Carousels</a></li><li><a href="/code-examples" class="dropdown-item">Code</a></li><li><a href="/dropdown-examples" class="dropdown-item">Dropdowns</a></li><li><a href="/embed-examples" class="dropdown-item">Embeds</a></li><li><a href="/image-examples" class="dropdown-item">Images</a></li><li><a href="/include-examples" class="dropdown-item">Includes</a></li><li><a href="/link-examples" class="dropdown-item">Links</a></li><li><a href="/list-examples" class="dropdown-item">Lists</a></li><li><a href="/modal-examples" class="dropdown-item">Modals</a></li><li><a href="/quote-examples" class="dropdown-item">Quotes</a></li><li><a href="/table-examples" class="dropdown-item">Tables</a></li></ul></li><li class="nav-item"><a href="https://github.com/twostraws/Ignite" class="nav-link">Ignite on GitHub</a></li></ul></div></div></nav></header><h1>Grid Layout</h1><p class="lead">All layout in Ignite is handled using an invisible 12-column grid layout. You can subdivide those columns however you want, or let Ignite do it for you.</p><p>To create a new page section, use the <code>Section</code> element. Your columns will be subdivided to make space for each item you’ve placed.</p><p>For example, these pictures all take up one third of the available space:</p><pre><code class="language-swift">Section {
+    Image("/images/photos/shades.jpg", description: "A pair of sunglasses.")
+        .resizable()
+
+    Image("/images/photos/stack.jpg", description: "A door partly open.")
+        .resizable()
+
+
+    Image("/images/photos/wind.jpg", description: "A windy day.")
+        .resizable()
+}</code></pre><div class="mb-5 row"><div class="col"><img src="/images/photos/shades.jpg"  class="img-fluid"alt="A pair of sunglasses."/></div><div class="col"><img src="/images/photos/stack.jpg"  class="img-fluid"alt="A door partly open."/></div><div class="col"><img src="/images/photos/wind.jpg"  class="img-fluid"alt="A windy day."/></div></div><p>You can also explicitly set a width for each element using the <code>width()</code> modifier.</p><p>This modifier automatically causes your views to rearrange themselves when horizontal space is restricted.
+For example, these pictures all take up one third of the available space when the browser window is wide, but all the space when the window is narrow:</p><pre><code class="language-swift">Section {
+    Image("/images/photos/shades.jpg", description: "A pair of sunglasses.")
+        .resizable()
+        .width(4)
+
+    Image("/images/photos/stack.jpg", description: "A door partly open.")
+        .resizable()
+        .width(4)
+
+    Image("/images/photos/wind.jpg", description: "A windy day.")
+        .resizable()
+        .width(4)
+}</code></pre><div class="mb-5 row"><div class="col-md-4"><img src="/images/photos/shades.jpg"  class="img-fluid"alt="A pair of sunglasses."/></div><div class="col-md-4"><img src="/images/photos/stack.jpg"  class="img-fluid"alt="A door partly open."/></div><div class="col-md-4"><img src="/images/photos/wind.jpg"  class="img-fluid"alt="A windy day."/></div></div><h1>Wrapping items</h1><p>If you place more than 12 columns of items in a section, they will wrap automatically. For example, this uses four pictures of width 4, causing one to wrap to the next line:</p><pre><code class="language-swift">Section {
+    Image("/images/photos/shades.jpg", description: "A pair of sunglasses.")
+        .resizable()
+        .width(4)
+
+    Image("/images/photos/stack.jpg", description: "A door partly open.")
+        .resizable()
+        .width(4)
+
+    Image("/images/photos/rug.jpg", description: "A nice rug.")
+        .resizable()
+        .width(4)
+
+    Image("/images/photos/car.jpg", description: "The window of a car.")
+        .resizable()
+        .width(4)
+}</code></pre><div class="mb-5 row"><div class="col-md-4"><img src="/images/photos/shades.jpg"  class="img-fluid"alt="A pair of sunglasses."/></div><div class="col-md-4"><img src="/images/photos/stack.jpg"  class="img-fluid"alt="A door partly open."/></div><div class="col-md-4"><img src="/images/photos/rug.jpg"  class="img-fluid"alt="A nice rug."/></div><div class="col-md-4"><img src="/images/photos/car.jpg"  class="img-fluid"alt="The window of a car."/></div></div><p>Although 12 columns is the default, you can adjust it downwards if needed. For example, this uses a 2-column grid:</p><pre><code class="language-swift">Section {
+    Image("/images/photos/shades.jpg", description: "A pair of sunglasses.")
+        .resizable()
+
+    Image("/images/photos/stack.jpg", description: "A door partly open.")
+        .resizable()
+
+    Image("/images/photos/rug.jpg", description: "A nice rug.")
+        .resizable()
+
+    Image("/images/photos/car.jpg", description: "The window of a car.")
+        .resizable()
+}
+.columns(2)</code></pre><div class="row row-cols-1 row-cols-md-2"><div class="col"><img src="/images/photos/shades.jpg"  class="img-fluid"alt="A pair of sunglasses."/></div><div class="col"><img src="/images/photos/stack.jpg"  class="img-fluid"alt="A door partly open."/></div><div class="col"><img src="/images/photos/rug.jpg"  class="img-fluid"alt="A nice rug."/></div><div class="col"><img src="/images/photos/car.jpg"  class="img-fluid"alt="The window of a car."/></div></div><div><h2 class="text-center mt-5"><a href="https://github.com/twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-github"></i></a><a href="https://twitter.com/twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-twitter"></i></a><a href="https://youtube.com/@twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-youtube"></i></a><a href="https://mastodon.social/@twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-mastodon"></i></a></h2><p class="text-center mt-5">Created with <a href="https://github.com/twostraws/Ignite">Ignite</a></p></div></div><script src="/js/bootstrap.bundle.min.js"></script><script src="/js/syntax-highlighting.js"></script></body></html>

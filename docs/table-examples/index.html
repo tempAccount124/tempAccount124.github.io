@@ -1,0 +1,151 @@
+<!doctype html><html lang="en" data-bs-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="Paul Hudson"><meta name="generator" content="Ignite v0.1.0"><title>Tables – My Awesome Site</title><link href="/css/bootstrap.min.css" rel="stylesheet"><link href="/css/prism-default-dark.css" rel="stylesheet"><link href="/css/bootstrap-icons.min.css" rel="stylesheet"><link href="https://tempAccount124.github.io/table-examples" rel="canonical"><meta property="og:site_name" content="My Awesome Site"><meta property="og:title" content="Tables"><meta property="twitter:title" content="Tables"><meta property="og:url" content="https://tempAccount124.github.io/table-examples"><meta name="twitter:domain" content="tempAccount124.github.io"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:dnt" content="on"></head><body class="container" style="padding-top: 80px; padding-bottom: 80px"><div class="col-sm-10 mx-auto"><header><nav class="fixed-top navbar navbar-expand-md" style="background-color: rgb(178 34 34 / 100%)" data-bs-theme="dark"><div class="container-fluid col"><a href="/" class="navbar-brand"><img src="/images/logo.svg"  class="mx-auto" style="width: min(60vw, 300px); height: 100%"alt="ExampleSite logo"/></a><button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div id="navbarCollapse" class="collapse navbar-collapse"><ul class="navbar-nav mb-2 mb-md-0 col justify-content-end"><li class="nav-item dropdown" data-bs-theme="light"><a href="#" role="button" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">Key concepts</a><ul class="dropdown-menu"><li><a href="/grid-examples" class="dropdown-item">Grid Layout</a></li><li><a href="/navigation-examples" class="dropdown-item">Navigation</a></li><li><a href="/content-examples" class="dropdown-item">Content</a></li><li><a href="/text-examples" class="dropdown-item">Text</a></li><li><a href="/custom/path/to/styling" class="dropdown-item">Styling</a></li></ul></li><li class="nav-item dropdown" data-bs-theme="light"><a href="#" role="button" class="dropdown-toggle nav-link active" data-bs-toggle="dropdown" aria-expanded="false">Examples</a><ul class="dropdown-menu"><li><a href="/accordion-examples" class="dropdown-item">Accordions</a></li><li><a href="/alert-examples" class="dropdown-item">Alerts</a></li><li><a href="/badge-examples" class="dropdown-item">Badges</a></li><li><a href="/button-examples" class="dropdown-item">Buttons</a></li><li><a href="/card-examples" class="dropdown-item">Cards</a></li><li><a href="/carousel-examples" class="dropdown-item">Carousels</a></li><li><a href="/code-examples" class="dropdown-item">Code</a></li><li><a href="/dropdown-examples" class="dropdown-item">Dropdowns</a></li><li><a href="/embed-examples" class="dropdown-item">Embeds</a></li><li><a href="/image-examples" class="dropdown-item">Images</a></li><li><a href="/include-examples" class="dropdown-item">Includes</a></li><li><a href="/link-examples" class="dropdown-item">Links</a></li><li><a href="/list-examples" class="dropdown-item">Lists</a></li><li><a href="/modal-examples" class="dropdown-item">Modals</a></li><li><a href="/quote-examples" class="dropdown-item">Quotes</a></li><li><a href="/table-examples" class="dropdown-item active" aria-current="page">Tables</a></li></ul></li><li class="nav-item"><a href="https://github.com/twostraws/Ignite" class="nav-link">Ignite on GitHub</a></li></ul></div></div></nav></header><h1>Tables</h1><p class="lead">Tables let you create tabulate data in rows and columns for easier reading.</p><p>Simple tables consist of rows and columns, like this:</p><pre><code class="language-swift">Table {
+    Row {
+        "Taylor Swift"
+        "555, Swiftie Avenue"
+        "Nashville"
+        "Tennessee"
+    }
+
+    Row {
+        "Adele Adkins"
+        "Caesars Palace"
+        "Las Vegas"
+        "Nevada"
+    }
+
+    Row {
+        "Tim Cook"
+        "Apple Park"
+        "Cupertino"
+        "California"
+    }
+}</code></pre><table class="mb-5 table"><tbody><tr><td>Taylor Swift</td><td>555, Swiftie Avenue</td><td>Nashville</td><td>Tennessee</td></tr><tr><td>Adele Adkins</td><td>Caesars Palace</td><td>Las Vegas</td><td>Nevada</td></tr><tr><td>Tim Cook</td><td>Apple Park</td><td>Cupertino</td><td>California</td></tr></tbody></table><p>You can also add headings to clarify what each column means:</p><pre><code class="language-swift">Table {
+    Row {
+        "Taylor Swift"
+        "555, Swiftie Avenue"
+        "Nashville"
+        "Tennessee"
+    }
+
+    Row {
+        "Adele Adkins"
+        "Caesars Palace"
+        "Las Vegas"
+        "Nevada"
+    }
+
+    Row {
+        "Tim Cook"
+        "Apple Park"
+        "Cupertino"
+        "California"
+    }
+} header: {
+    "Name"
+    "Address"
+    "City"
+    "State"
+}</code></pre><table class="mb-5 table"><thead><tr><th>Name</th><th>Address</th><th>City</th><th>State</th></tr></thead><tbody><tr><td>Taylor Swift</td><td>555, Swiftie Avenue</td><td>Nashville</td><td>Tennessee</td></tr><tr><td>Adele Adkins</td><td>Caesars Palace</td><td>Las Vegas</td><td>Nevada</td></tr><tr><td>Tim Cook</td><td>Apple Park</td><td>Cupertino</td><td>California</td></tr></tbody></table><h2>Table styling</h2><p>To make rows easier to distinguish, use <code>.tableStyle(.stripedRows)</code> to create a zebra striping effect:</p><pre><code class="language-swift">Table {
+    Row {
+        "Bob Blob"
+        "Underwater Baker"
+        "Seaweed Scones"
+        "Collecting Rubber Ducks"
+    }
+
+    Row {
+        "Sally Sizzle"
+        "Firefighter Chef"
+        "Spicy Ice Cream"
+        "Volcano Surfing"
+    }
+
+    Row {
+        "Greg Grumble"
+        "Grumpy Florist"
+        "Thorny Roses Salad"
+        "Whispering to Snails"
+    }
+} header: {
+    "Name"
+    "Occupation"
+    "Favourite Food"
+    "Secret Hobby"
+}
+.tableStyle(.stripedRows)</code></pre><table class="mb-5 table table-striped"><thead><tr><th>Name</th><th>Occupation</th><th>Favourite Food</th><th>Secret Hobby</th></tr></thead><tbody><tr><td>Bob Blob</td><td>Underwater Baker</td><td>Seaweed Scones</td><td>Collecting Rubber Ducks</td></tr><tr><td>Sally Sizzle</td><td>Firefighter Chef</td><td>Spicy Ice Cream</td><td>Volcano Surfing</td></tr><tr><td>Greg Grumble</td><td>Grumpy Florist</td><td>Thorny Roses Salad</td><td>Whispering to Snails</td></tr></tbody></table><p>Alternatively, use <code>.tableStyle(.stripedColumns)</code> to create columnar stripes:</p><pre><code class="language-swift">Table {
+    Row {
+        "Bob Blob"
+        "Underwater Baker"
+        "Seaweed Scones"
+        "Collecting Rubber Ducks"
+    }
+
+    Row {
+        "Sally Sizzle"
+        "Firefighter Chef"
+        "Spicy Ice Cream"
+        "Volcano Surfing"
+    }
+
+    Row {
+        "Greg Grumble"
+        "Grumpy Florist"
+        "Thorny Roses Salad"
+        "Whispering to Snails"
+    }
+} header: {
+    "Name"
+    "Occupation"
+    "Favourite Food"
+    "Secret Hobby"
+}
+.tableStyle(.stripedColumns)</code></pre><table class="mb-5 table table-striped-columns"><thead><tr><th>Name</th><th>Occupation</th><th>Favourite Food</th><th>Secret Hobby</th></tr></thead><tbody><tr><td>Bob Blob</td><td>Underwater Baker</td><td>Seaweed Scones</td><td>Collecting Rubber Ducks</td></tr><tr><td>Sally Sizzle</td><td>Firefighter Chef</td><td>Spicy Ice Cream</td><td>Volcano Surfing</td></tr><tr><td>Greg Grumble</td><td>Grumpy Florist</td><td>Thorny Roses Salad</td><td>Whispering to Snails</td></tr></tbody></table><h2>Row and column formatting</h2><p>Rows are top-aligned by default, but you can change that by adding a <code>Column</code> then using its <code>verticalAlignment()</code> modifier.This is easier to see when the table borders is enabled using the <code>tableBorder()</code> modifier, like this:</p><pre><code class="language-swift">Table {
+    Row {
+        Column {
+            "Top"
+        }
+        .verticalAlignment(.top)
+
+        Column {
+            "Middle"
+        }
+        .verticalAlignment(.middle)
+
+        Column {
+            "Bottom"
+        }
+        .verticalAlignment(.bottom)
+
+        Column {
+            """
+            This is much longer text and will wrap over multiple lines, so we can see vertical alignment working.             This is much longer text and will wrap over multiple lines, so we can see vertical alignment working.             This is much longer text and will wrap over multiple lines, so we can see vertical alignment working.             This is much longer text and will wrap over multiple lines, so we can see vertical alignment working.             This is much longer text and will wrap over multiple lines, so we can see vertical alignment working.
+            """
+        }
+    }
+}
+.tableBorder(true)</code></pre><table class="mb-5 table table-bordered"><tbody><tr><td colspan="1">Top</td><td colspan="1" class="align-middle">Middle</td><td colspan="1" class="align-bottom">Bottom</td><td colspan="1">This is much longer text and will wrap over multiple lines, so we can see vertical alignment working. This is much longer text and will wrap over multiple lines, so we can see vertical alignment working. This is much longer text and will wrap over multiple lines, so we can see vertical alignment working. This is much longer text and will wrap over multiple lines, so we can see vertical alignment working. This is much longer text and will wrap over multiple lines, so we can see vertical alignment working.</td></tr></tbody></table><p>Each row item occupies one column by default, but <code>Column</code> objects have a <code>columnSpan()</code> modifier to adjust that:</p><pre><code class="language-swift">Table {
+    Row {
+        "This is a column"
+        "Another column"
+        "One more for luck"
+    }
+
+    Row {
+        Column {
+            "This column is as wide as the previous three, and is aligned to the center."
+        }
+        .columnSpan(3)
+        .horizontalAlignment(.center)
+    }
+
+    Row {
+        "This is another column"
+
+        Column {
+            "This column occupies two slots, and is aligned to the trailing edge."
+        }
+        .columnSpan(2)
+        .horizontalAlignment(.trailing)
+    }
+}
+.tableBorder(true)</code></pre><table class="table table-bordered"><tbody><tr><td>This is a column</td><td>Another column</td><td>One more for luck</td></tr><tr><td colspan="3" class="text-center">This column is as wide as the previous three, and is aligned to the center.</td></tr><tr><td>This is another column</td><td colspan="2" class="text-end">This column occupies two slots, and is aligned to the trailing edge.</td></tr></tbody></table><div><h2 class="text-center mt-5"><a href="https://github.com/twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-github"></i></a><a href="https://twitter.com/twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-twitter"></i></a><a href="https://youtube.com/@twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-youtube"></i></a><a href="https://mastodon.social/@twostraws" target="_blank" rel="noopener noreferrer" class="link-secondary" style="margin-right: 20px"><i class="bi-mastodon"></i></a></h2><p class="text-center mt-5">Created with <a href="https://github.com/twostraws/Ignite">Ignite</a></p></div></div><script src="/js/bootstrap.bundle.min.js"></script><script src="/js/syntax-highlighting.js"></script></body></html>
